@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import requests, json
+import requests, json, re
 
 app = Flask(__name__)
 
@@ -11,10 +11,10 @@ def home():
     currtoconvert = request.form.get("currency to convert to")
     currtoconvert = currtoconvert.upper()
 
-    mylist = list(amtandunit)
-    basecurrencyamt = ''.join([item for sublist in mylist for item in sublist if item.isdigit()])
-    basecurrencyamt = float(basecurrencyamt)
-    baseunit = ''.join([item for sublist in mylist for item in sublist if item.isdigit() == False])
+    basecurrencyamt = re.search(r'[\d.]+', amtandunit)
+    basecurrencyamt = float(basecurrencyamt.group())
+    baseunit = re.search(r'[a-zA-Z]+', amtandunit)
+    baseunit = baseunit.group()
     baseunit = baseunit.upper()
 
     url = 'https://api.freecurrencyapi.com/v1/latest'
