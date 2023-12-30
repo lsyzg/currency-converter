@@ -1,15 +1,18 @@
 body{
     background-color: #1d2a35;
     color: white;
-    margin-left: 50px;
     font-family: verdana, sans-serif;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-left: 50px;
 }
+
 #calculator{
     text-align: center;
-    margin-top: 50px;
     margin-bottom: 200px;
     font-size: x-large;
 }
+
 button{
     border-radius: 20px;
 }

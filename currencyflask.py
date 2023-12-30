@@ -20,10 +20,9 @@ def home():
     url = 'https://api.freecurrencyapi.com/v1/latest'
     response = requests.get(url, params={"apikey":"fca_live_qvd2XQtgRAOIxbp9H8qIx0DEq5ZngipCkJmRWFsv", "base_currency":baseunit, "currencies":currtoconvert})
     
-    conversionratedict = response.json()
-    currencydict = conversionratedict["data"]
-    conversionrate = currencydict[currtoconvert]
-    
+    responsedict = response.json()
+    conversionrate = responsedict["data"][currtoconvert]
+
     converted = str(round(conversionrate * basecurrencyamt, 2)) + " " + currtoconvert
     return render_template('form.html', convertedcurr=converted)
 
