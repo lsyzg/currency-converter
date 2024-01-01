@@ -7,12 +7,24 @@ body{
     margin-left: 50px;
 }
 
-#calculator{
+.outside_container{
+    width: 100%;
+}
+
+.container{
+    margin: 0 auto;
+    width: 300px;
     text-align: center;
-    margin-bottom: 200px;
-    font-size: x-large;
+}
+
+.unit_dropdown {
+    width: 200px;
+    margin: 50px;
 }
 
 button{
     border-radius: 20px;
+}
+#arrow{
+    margin-top: 50px;
 }
