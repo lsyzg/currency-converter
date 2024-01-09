@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, jsonify
-from datetime import date
-import requests, re, datetime
+from flask import Flask, render_template, request
+import requests, datetime
 
 app = Flask(__name__)
 
