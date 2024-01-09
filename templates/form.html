@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
 </head>
 <body>
     <div class="outside_container">
@@ -97,28 +98,28 @@
             <h2>Your converted currency is: {{convertedcurr}}</h2>
         </div>
         <div class="container_chart">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
             <div>
                 <canvas id="line_chart" width="600" height="300"></canvas>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
-                var ctx = document.getElementById("line_chart").getContext("2d");
+                const ctx = document.getElementById("line_chart");
                 new Chart(ctx, {
                     type: "line",
                     data: {
-                        labels: {{labels | safe }},
-                        datasets: [
-                            {
+                        labels: {{ labels | safe }},
+                        datasets: [{
                                 label: "Data points",
                                 data: {{ values | safe }},
                                 fill: false,
                                 borderColor: "rgb(75, 192, 192)",
                                 lineTension: 0.1
-                            }
-                        ]
+                            }]
                     },
                     options: {
-                        responsive: false
+                        y: {
+                        beginAtZero: false
+                        }
                     }
                 });
             </script>
