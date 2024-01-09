@@ -11,20 +11,33 @@ body{
     width: 100%;
 }
 
-.container{
+.container_drop{
     margin: 0 auto;
     width: 300px;
     text-align: center;
 }
 
+.container_chart{
+    margin: 0 auto;
+    width: 600px;
+    text-align: center;
+}
+
+
 .unit_dropdown {
-    width: 200px;
-    margin: 50px;
+    width: 100px;
 }
 
 button{
     border-radius: 20px;
 }
-#arrow{
-    margin-top: 50px;
+
+.arrow{
+    font-size: xx-large;
+}
+
+.dropdown_table{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
 }

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from datetime import date
 import requests, re, datetime
 
@@ -13,12 +13,6 @@ def home():
     baseunit = request.form["unit"]
     currtoconvert = request.form.get("currency to convert to")
     histconversionlst = []
-
-    # basecurrencyamt = re.search(r'[\d.]+', amtandunit)
-    # basecurrencyamt = float(basecurrencyamt.group())
-    # baseunit = re.search(r'[a-zA-Z]+', amtandunit)
-    # baseunit = baseunit.group()
-
     baseunit = baseunit.upper()
     currtoconvert = currtoconvert.upper()
 
@@ -41,7 +35,13 @@ def home():
         histconversion = historicresponsedict["data"][date][currtoconvert]
         histconversionlst.append((date, histconversion))
     print(histconversionlst)
-    return render_template('form.html', convertedcurr=converted)
+
+    labels = [row[0] for row in histconversionlst]
+    values = [row[1] for row in histconversionlst]
+
+    print(labels, values)
+
+    return render_template('form.html', convertedcurr=converted, labels=labels, values=values)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

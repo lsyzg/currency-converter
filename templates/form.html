@@ -8,10 +8,9 @@
 </head>
 <body>
     <div class="outside_container">
-        <div class="container">  
+        <div class="container_drop">  
             <form method ="POST">
-            
-                <table>
+                <table class="dropdown_table">
                     <tr>
                         <td>
                             <select class="unit_dropdown" id= "unit" name="unit" required>
@@ -51,7 +50,7 @@
                             </select>
                         </td>
                         <td>
-                            <p id="arrow">&#8594;</p>
+                            <span class="arrow">&#8594;</span>
                         </td>
                         <td>
                             <select class="unit_dropdown" id="currency_to_convert_to" name="currency to convert to" required>
@@ -92,11 +91,37 @@
                         </td>
                     </tr>
                 </table>
-            
                 <div class="amt">Amount of your currency <input id="amt" name="amt"></div>
                 <button type="submit">submit</button>
             </form>
             <h2>Your converted currency is: {{convertedcurr}}</h2>
+        </div>
+        <div class="container_chart">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+            <div>
+                <canvas id="line_chart" width="600" height="300"></canvas>
+            </div>
+            <script>
+                var ctx = document.getElementById("line_chart").getContext("2d");
+                new Chart(ctx, {
+                    type: "line",
+                    data: {
+                        labels: {{labels | safe }},
+                        datasets: [
+                            {
+                                label: "Data points",
+                                data: {{ values | safe }},
+                                fill: false,
+                                borderColor: "rgb(75, 192, 192)",
+                                lineTension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: false
+                    }
+                });
+            </script>
         </div>
     </div> 
 </body>
